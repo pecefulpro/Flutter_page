@@ -5,6 +5,7 @@ void main() {
   var materialApp = MaterialApp(
   debugShowCheckedModeBanner: false,
   home:Draft()
+  
  
 
 
@@ -12,9 +13,49 @@ void main() {
   return runApp(materialApp);
 }
 
+//Icons 
+String file_ext = 'kmd';
+
+//Market Cap
+String marketC = '68,610,391.00';
+
+//24H Volume(24h change)
+String start_24 = "3,737,391.97";
+double in_24 = -38.12; 
+String vol_24 = (in_24).toStringAsFixed(2);
+
+//Last Price(24h change)
+String starting_24 = '0.02';
+double pr_24 = 17.47;
+String price_24 = (pr_24).toStringAsFixed(2);
+
+//Block height 
+int Block_height = 1552076;
+String Block_String = Block_height.toString();
+
+//Last notarized block 
+int LNB = 1552076;
+String LNB_string = Block_height.toString();
 
 
-String vol_24 = (-38.12).toStringAsFixed(2);
+Color getColor(int selector) {
+  if (in_24 < 0 ) {
+    return Colors.red;
+  }
+  else{
+    return Colors.lightGreenAccent[400];
+  }
+}
+
+Color getColor1(int selector) {
+  if (pr_24 < 0 ) {
+    return Colors.red;
+  }
+  else{
+    return Colors.lightGreenAccent[400];
+  }
+}
+
 
 
 
@@ -40,7 +81,7 @@ class Draft extends StatelessWidget {
 
               Center(
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('lib/assets/icons/kmd.png'),
+                  backgroundImage: AssetImage('lib/assets/icons/'+ file_ext +'.png'),
                   radius: 40,
                 ),
               ),
@@ -60,7 +101,7 @@ class Draft extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                """\$68,610,391.00 """,
+                "\$ "+marketC,
                 style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 2.0,
@@ -79,9 +120,10 @@ class Draft extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                """\$0.02(+17.47%) """,
+                  "\$"+ starting_24 +" ("+ price_24 +"%) ",
                 style: TextStyle(
-                  color: Colors.lightGreenAccent[400],
+
+                  color: getColor1(null),
                   letterSpacing: 2.0,
                 ),
               ),
@@ -97,13 +139,11 @@ class Draft extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.0),
-
               Text(
-
-                "\$ 3,737,391.97 (" + vol_24 + "%)",
+                "\$ " + start_24 + " (" + vol_24 + "%)",
                 
                 style: TextStyle(
-                  color: Colors.red,
+                  color: getColor(null),
                   letterSpacing: 2.0,
                 ),
               ),
@@ -139,7 +179,7 @@ class Draft extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                """1552060""",
+                Block_String,
                 style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 2.0,
@@ -158,7 +198,7 @@ class Draft extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                """1552060""",
+                LNB_string,
                 style: TextStyle(
                   color: Colors.white,
                   letterSpacing: 2.0,
